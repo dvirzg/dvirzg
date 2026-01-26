@@ -22,7 +22,3 @@ My customized fork of Jan (open-source ChatGPT alternative) with custom action f
 
 **[autocmd](https://github.com/dvirzg/autocmd)**  
 Natural language to shell command converter.
-
----
-
-Learn more: [LinkedIn](https://www.linkedin.com/in/dvirzg) | [dvirzg.com](https://dvirzg.com)
