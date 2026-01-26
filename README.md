@@ -1,6 +1,4 @@
-![3D Profile](profile-3d-contrib/profile-night-view.svg)
-### Hi 👋
+![3D Profile](profile-3d-contrib/profile-night-green.svg)
+### Hi 👋 I'm Dvir.
 
-I'm Dvir.
-
-Learn more about me [here](https://dvirzg.com)
+Learn more about me [in my LinkedIn](https://dvirzg.com), or on [dvirzg.com](https://dvirzg.com)
