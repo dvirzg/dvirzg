@@ -1,8 +1,6 @@
 ![3D Profile](profile-3d-contrib/profile-night-green.svg)
 
-### Hi, I'm Dvir
-
-Mathematical Physics student at the University of Waterloo, graduating December 2026. Previously MLE at Cash App and Research Assistant at Perimeter Institute.  
+I'm a Mathematical Physics student at the University of Waterloo, graduating December 2026. Previously MLE at Cash App and Research Assistant at Perimeter Institute.  
 
 I work on causal inference, AI/ML, quantum foundations, and behavioral science.
 
