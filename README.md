@@ -2,7 +2,7 @@
 
 ### Hi, I'm Dvir
 
-Mathematical Physics student at the University of Waterloo. I work on causal inference, AI/ML, quantum computing, and behavioral science.
+Mathematical Physics student at the University of Waterloo, graduating December 2026. ML Researcher at Block (Dessa) starting Summer 2026. Previously ML Engineer at Cash App, Research Assistant at Perimeter Institute, and Data Scientist at Intact Insurance. I work on causal inference, AI/ML, quantum foundations, and behavioral science.
 
 ## Projects
 
