@@ -2,9 +2,9 @@
 
 ### Hi, I'm Dvir
 
-Mathematical Physics student at the University of Waterloo, graduating December 2026. ML Researcher at Block (Dessa) starting Summer 2026.  
+Mathematical Physics student at the University of Waterloo, graduating December 2026. Previously MLE at Cash App and Research Assistant at Perimeter Institute.  
 
-Previously ML Engineer at Cash App, Research Assistant at Perimeter Institute, and Data Scientist at Intact Insurance. I work on causal inference, AI/ML, quantum foundations, and behavioral science.
+I work on causal inference, AI/ML, quantum foundations, and behavioral science.
 
 ## Projects
 
@@ -15,13 +15,13 @@ Building causal models to understand how insulin timing and dosage affect blood 
 Research from the Perimeter Institute on causal inference with hidden confounders. Includes DAG unpacking for counterfactual bounds, compatibility testing, inflation methods for constraint derivation, and distribution generation using nonconvex quadratic programming.
 
 **[Forge](https://github.com/dvirzg/Forge)**  
-A local macOS media utility with a liquid glass UI. Processes images (AI background removal, format conversion), PDFs (merge, rotate, extract), videos (trim, convert to GIF), and text—all locally with complete privacy.
+A local macOS media utility with a liquid glass UI. Processes images (AI background removal, format conversion), PDFs (merge, rotate, extract), videos (trim, convert to GIF), and text.
 
 **[Jannote](https://github.com/dvirzg/jannote)**  
 My customized fork of Jan (open-source ChatGPT alternative) with custom action functions and a local database for building and mentioning files, prompts, and contexts easily.
 
 **[autocmd](https://github.com/dvirzg/autocmd)**  
-Natural language to shell command converter. Transform plain English prompts into executable shell commands using LLMs, with support for multiple providers (Claude, GPT, Groq, Deepseek).
+Natural language to shell command converter.
 
 ---
 
