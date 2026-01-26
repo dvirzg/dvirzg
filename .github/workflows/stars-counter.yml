@@ -2,7 +2,7 @@ name: Update Stars Counter
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Run daily at midnight UTC
+    - cron: "0 0 * * *"
   workflow_dispatch:
 
 jobs:
@@ -10,61 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Fetch star counts
-        id: fetch-stars
+      - name: Get star count
+        id: stars
         run: |
-          REPOS=(
-            "dvirzg/Forge"
-            "dvirzg/jannote"
-            "dvirzg/autocmd"
-            "dvirzg/causal_inference_public"
-            "Blood-Glucose-Control/causal_modeling"
-            "RobotPsychologist/bg_control"
-          )
-          
-          TOTAL_STARS=0
-          
-          for repo in "${REPOS[@]}"; do
-            STARS=$(curl -s "https://api.github.com/repos/${repo}" | grep -o '"stargazers_count":[0-9]*' | grep -o '[0-9]*' || echo "0")
-            TOTAL_STARS=$((TOTAL_STARS + STARS))
-            echo "${repo}: ${STARS} stars"
-          done
-          
-          echo "total=${TOTAL_STARS}" >> $GITHUB_OUTPUT
-          echo "Total stars: ${TOTAL_STARS}"
+          USER_TOTAL=$(curl -s "https://api.github.com/users/dvirzg/repos?per_page=100" | grep -o '"stargazers_count":[0-9]*' | grep -o '[0-9]*' | awk '{s+=$1} END {print s+0}')
+          EXTRA1=$(curl -s "https://api.github.com/repos/Blood-Glucose-Control/causal_modeling" | grep -o '"stargazers_count":[0-9]*' | grep -o '[0-9]*' || echo "0")
+          EXTRA2=$(curl -s "https://api.github.com/repos/RobotPsychologist/bg_control" | grep -o '"stargazers_count":[0-9]*' | grep -o '[0-9]*' || echo "0")
+          TOTAL=$((USER_TOTAL + EXTRA1 + EXTRA2))
+          echo "total=$TOTAL" >> $GITHUB_OUTPUT
           
       - name: Update README
         run: |
-          STAR_COUNT="${{ steps.fetch-stars.outputs.total }}"
-          python3 << EOF
-          import re
-          
-          with open('README.md', 'r') as f:
-              content = f.read()
-          
-          # Replace existing stars counter or add new one
-          pattern = r'⭐ \*\*[0-9]+\*\*'
-          replacement = f'⭐ **{STAR_COUNT}**'
-          
-          if re.search(pattern, content):
-              content = re.sub(pattern, replacement, content)
-          else:
-              # Add after the profile image line
-              content = content.replace(
-                  '![3D Profile](profile-3d-contrib/profile-night-green.svg)',
-                  f'![3D Profile](profile-3d-contrib/profile-night-green.svg)\n\n⭐ **{STAR_COUNT}** stars across my repositories'
-              )
-          
-          with open('README.md', 'w') as f:
-              f.write(content)
-          EOF
+          sed -i "s/⭐ \*\*[0-9]*\*\*/⭐ **${{ steps.stars.outputs.total }}**/" README.md
           
       - name: Commit and push
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add README.md
-          git diff --staged --quiet || (git commit -m "Update stars counter [skip ci]" && git push)
+          git diff --staged --quiet || (git commit -m "Update stars counter" && git push)
