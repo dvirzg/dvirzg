@@ -4,4 +4,3 @@
 I'm Dvir.
 
 Learn more about me [here](https://dvirzg.com)
-
