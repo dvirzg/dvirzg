@@ -7,7 +7,7 @@ I work on causal inference, AI/ML, quantum foundations, and behavioral science.
 ## Projects
 
 **[Causal Modeling for Blood Glucose Control](https://github.com/Blood-Glucose-Control/causal_modeling)**  
-Building causal models to understand how insulin timing and dosage affect blood glucose levels using FitBit and Gluroo data. We compared and implemented methods including T4 Framework, Causal Transformers, Counterfactual Recurrent Network with Balanced Representations, and G-Net for counterfactual prediction.
+Building causal models to understand how insulin timing and dosage affect blood glucose levels using FitBit and Gluroo data. We compared and implemented Causal Transformers, Counterfactual Recurrent Network with Balanced Representations, among others for counterfactual prediction.
 
 **[Causal Inference Research](https://github.com/dvirzg/causal_inference_public)**  
 Research from the Perimeter Institute on causal inference with hidden confounders. Includes DAG unpacking for counterfactual bounds, compatibility testing, inflation methods for constraint derivation, and distribution generation using nonconvex quadratic programming.
