@@ -1,0 +1,70 @@
+name: Update Stars Counter
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Run daily at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  update-stars:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Fetch star counts
+        id: fetch-stars
+        run: |
+          REPOS=(
+            "dvirzg/Forge"
+            "dvirzg/jannote"
+            "dvirzg/autocmd"
+            "dvirzg/causal_inference_public"
+            "Blood-Glucose-Control/causal_modeling"
+            "RobotPsychologist/bg_control"
+          )
+          
+          TOTAL_STARS=0
+          
+          for repo in "${REPOS[@]}"; do
+            STARS=$(curl -s "https://api.github.com/repos/${repo}" | grep -o '"stargazers_count":[0-9]*' | grep -o '[0-9]*' || echo "0")
+            TOTAL_STARS=$((TOTAL_STARS + STARS))
+            echo "${repo}: ${STARS} stars"
+          done
+          
+          echo "total=${TOTAL_STARS}" >> $GITHUB_OUTPUT
+          echo "Total stars: ${TOTAL_STARS}"
+          
+      - name: Update README
+        run: |
+          STAR_COUNT="${{ steps.fetch-stars.outputs.total }}"
+          python3 << EOF
+          import re
+          
+          with open('README.md', 'r') as f:
+              content = f.read()
+          
+          # Replace existing stars counter or add new one
+          pattern = r'⭐ \*\*[0-9]+\*\*'
+          replacement = f'⭐ **{STAR_COUNT}**'
+          
+          if re.search(pattern, content):
+              content = re.sub(pattern, replacement, content)
+          else:
+              # Add after the profile image line
+              content = content.replace(
+                  '![3D Profile](profile-3d-contrib/profile-night-green.svg)',
+                  f'![3D Profile](profile-3d-contrib/profile-night-green.svg)\n\n⭐ **{STAR_COUNT}** stars across my repositories'
+              )
+          
+          with open('README.md', 'w') as f:
+              f.write(content)
+          EOF
+          
+      - name: Commit and push
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add README.md
+          git diff --staged --quiet || (git commit -m "Update stars counter [skip ci]" && git push)
